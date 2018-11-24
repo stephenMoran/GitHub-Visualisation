@@ -12,12 +12,14 @@ def home(request):
     if request.method == 'POST':
         if form.is_valid:
             try:
-                print(form.data['UserName'])
-                print(form.data['Password'])
+                print(form.data['userName'])
+                print(form.data['password'])
                 g = Github(form.data['userName'], form.data['password'])
                 print("hello")
+                currentUser = dataGather.loginUser(g)
+                print(currentUser)
                 context = {
-                    'user' : dataGather.getUser(g)
+                    'user' : currentUser
                 }
                 return render(request, 'visual.html', context)
             except:
