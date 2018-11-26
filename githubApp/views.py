@@ -41,10 +41,7 @@ def login(request):
                     request.session['password'] = form.data['password']
                     request.session.modified = True
                     g = Github(form.data['userName'], form.data['password'])
-                    print("hello")
                     currentUser = dataGather.loginUser(g)
-
-                    print(currentUser)
                     context = {
                         'user' : currentUser
                     }

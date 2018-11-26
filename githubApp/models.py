@@ -2,10 +2,10 @@ from django.db import models
 from django.utils import timezone
 
 class gitUser(models.Model):
-    name = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100,  unique=True)
     date_added = models.DateTimeField(default=timezone.now)
     weight = models.IntegerField()
 
 class link(models.Model):
-    source = models.PositiveIntegerField()
-    destination  = models.PositiveIntegerField()
+    source = models.CharField(max_length = 100)
+    target  = models.CharField(max_length = 100)

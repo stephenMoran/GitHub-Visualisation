@@ -8,13 +8,22 @@ def loginUser(user):
     return currentUser
 
 
-def getFollowers(user, login):
-    user = login.get_user('DConnaughton')
+def getFollowers(username, login):
+    user = login.get_user(username)
     followers = user.get_followers()
-    print(followers)
+    #gitUser.objects.create(name = user.login, weight = user.followers)
+    #gitUser.objects.create(name = user.login, weight = user.followers)
+    #Find links between nodes
+    for follower in followers:
+        follower = follower.login
+        linkedTo = gitUser.objects.filter(name = follower)
+        for user in linkedTo:
+            print(user.name)
+            print(username)
+            link.objects.create(source= username, target = user.name)
 
     #creating user in database
-    gitUser.objects.create(name = user.login, weight = user.followers)
+
     #save username in database
     #for follower in user.get_user().get_followers():
 
