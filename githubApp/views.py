@@ -12,13 +12,12 @@ def login(request):
     if request.method == 'POST':
         if 'userAdd' in request.POST:
             try:
-                print(request.POST['userName'])
-                print(request.session.get('password'))
                 name = request.POST['userName']
-                #populating database with new info 
+                #populating database with new info
                 currentUser = request.session.get('username')
                 currentPass = request.session.get('password')
                 g = Github(currentUser, currentPass)
+                dataGather.getFollowers(name, g)
                 currentUser = dataGather.loginUser(g)
                 context = {
                     'user' : currentUser
