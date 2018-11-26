@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 {%block visual%}
-  <div class = "container">
-    <h1>Stephen Moran</h1>
+<div class = "header">
+  <nav class="navbar navbar-light bg-light justify-content-between">
+    <a class="navbar-brand" href="#">
+      Welcome {{user.name}}
+    <img src="{{user.avatar_url}}" width="40" height="40" class="d-inline-block align-top" alt="">
+    </a>
+    <form class="form-inline" method = "post">
+       {% csrf_token %}
+      <input class="form-control mr-sm-2" type="search" placeholder="Add user to graph" aria-label="Search" name = "userName">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name = "userAdd">Add</button>
+    </form>
+  </nav>
+</div>
+<div class = "container">
     <script src="https://d3js.org/d3.v5.js"></script>
     <script>
       var width = 960,
@@ -16,5 +28,5 @@
       .charge(-100)
       .size([width, height]);
     </script>
-  </div>
+</div>
 {%endblock visual%}
