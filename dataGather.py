@@ -11,8 +11,8 @@ def loginUser(user):
 def getFollowers(username, login):
     user = login.get_user(username)
     followers = user.get_followers()
-    #gitUser.objects.create(name = user.login, weight = user.followers)
-    #gitUser.objects.create(name = user.login, weight = user.followers)
+    gitUser.objects.create(name = user.login, weight = user.followers)
+
     #Find links between nodes
     for follower in followers:
         follower = follower.login
@@ -21,6 +21,7 @@ def getFollowers(username, login):
             print(user.name)
             print(username)
             link.objects.create(source= username, target = user.name)
+
 
     #creating user in database
 
