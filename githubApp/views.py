@@ -31,15 +31,15 @@ def login(request):
                 currentPass = request.session.get('password')
                 g = Github(currentUser, currentPass)
                 currentUser = dataGather.loginUser(g)
+                links = link.objects.all()
                 context = {
-                    'user' : currentUser
+                    'user' : currentUser,
+                    'links': links
                 }
                 return render(request, 'visual.html', context)
         else:
             if form.is_valid:
                 try:
-                    print(form.data['userName'])
-                    print(form.data['password'])
                     request.session['username'] = form.data['userName']
                     request.session['password'] = form.data['password']
                     request.session.modified = True

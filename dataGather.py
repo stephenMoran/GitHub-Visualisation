@@ -2,7 +2,6 @@ from github import Github
 from githubApp.models import gitUser, link
 
 def loginUser(user):
-    print(user.get_user().name)
     repos = user.get_user().get_repos()
     currentUser = user.get_user()
     return currentUser
@@ -11,29 +10,35 @@ def loginUser(user):
 def getFollowers(username, login):
     user = login.get_user(username)
     followers = user.get_followers()
-    gitUser.objects.create(name = user.login, weight = user.followers)
-
-    #Find links between nodes
+    following = user.get_following()
+    #Find links between nodes - followers
     for follower in followers:
-        follower = follower.login
-        linkedTo = gitUser.objects.filter(name = follower)
+        followerLogin = follower.login
+        linkedTo = gitUser.objects.filter(name = followerLogin)
+        print("hello1")
         for user in linkedTo:
-            print(user.name)
-            print(username)
             link.objects.create(source= username, target = user.name)
 
+    #If youre following anyone in the database
+    for followed in following:
+        followedLogin = followed.login
+        print(followedLogin + " followed by :" + username)
+        linkedTo = gitUser.objects.filter(name = followedLogin)
+        print(linkedTo)
+        for user in linkedTo:
+            link.objects.create(source= username, target = user.name)
+    #only add if part of graph
 
-    #creating user in database
+    gitUser.objects.create(name = user.login, weight = user.followers)
 
-    #save username in database
-    #for follower in user.get_user().get_followers():
 
-        #search to see if follower id in database
-        #if so make link
-
-#def makeLinks():
-
-#def getLinks(currentUser, userNames)
-##{
-
-#}
+#    for member in gitUser.objects.all():
+#        memberAccount = login.get_user(member.name)
+#        memberFollows = memberAccount.get_followers()
+#        for follower in memberFollows:
+#            print(member.name + "fllowed by " + follower.name)
+#            if follower.login == user.login:
+#                print("bye Bye")
+##               hasConnection = True
+#                link.objects.create(source= memberAccount.login, target = user.name)
+#
