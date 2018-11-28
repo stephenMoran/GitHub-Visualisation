@@ -25,6 +25,22 @@
    </table>
 
 <div id = "chart" align = "center"></div>
+<style>
+    .node{
+      fill: #ccc;
+      stroke: #fff;
+      stroke-width: 2px;
+    }
+    .link {
+      stroke: #000;
+      stroke-width: 3px;
+    }
+    .text {
+        pointer-events: none;
+        font: 10px sans-serif;
+        color: #ccc;
+    }
+ </style>
 <script src="https://d3js.org/d3.v3.js"></script>
 <script>
 
@@ -48,7 +64,7 @@
   }
 
   var width  = 1200;
-      height = 650;
+      height = 750;
 
   //graph nodes
   var nodes = {}
@@ -59,7 +75,7 @@
     link.target = nodes[link.target] ||
       (nodes[link.target] = {name: link.target})
   });
-
+  console.log(nodes)
   //add svg to body
   var svg = d3.select('#chart').append('svg')
   .attr('width', width)
@@ -75,25 +91,43 @@
 
   var link = svg.selectAll('.link')
   .data(links)
-  .enter().append('link')
+  .enter().append('line')
   .attr('class', 'link');
 
-  var node = svg.selectAll('.node')
+
+  var elems = svg.selectAll('g')
   .data(force.nodes())
-  .enter().append('circle')
+  .enter()
+  .append("g")
+  .attr("name", function(d) {return d.name})
+
+  var node = elems.append('circle')
   .attr('class', 'node')
-  .attr('r', width * 0.03)
+  .attr('r', width * 0.01);
+
+  var text = elems.append("text")
+     .attr('class', 'text')
+     .attr("dx", 12)
+     .attr("dy", ".35em")
+     .text(function(d) { return d.name });
 
   function tick(e) {
     node.attr('cx', function(d) {return d.x;})
     .attr('cy', function(d) {return d.y;})
     .call(force.drag);
 
-    link.attr('x1', function(d) {return d.source.x})
-    .attr('y1', function(d) {return d.source.y})
-    .attr('x2', function(d) {return d.target.x})
-    .attr('y2', function(d) {return d.target.y})
-  }
+    elems.attr('cx', function(d) {return d.x;})
+    .attr('cy', function(d) {return d.y;})
+    .call(force.drag);
 
+    text.attr('x', function(d) {return d.x;})
+    .attr('y', function(d) {return d.y;})
+    .call(force.drag);
+
+    link.attr('x1', function(d) {return d.source.x;})
+    .attr('y1', function(d) {return d.source.y;})
+    .attr('x2', function(d) {return d.target.x;})
+    .attr('y2', function(d) {return d.target.y;});
+  }
 </script>
 {%endblock visual%}

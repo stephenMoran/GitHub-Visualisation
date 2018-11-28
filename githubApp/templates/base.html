@@ -9,7 +9,6 @@
     <title>GitHub Visual</title>
     <style>
         .node{
-          fill: #ccc;
           stroke: #fff;
           stroke-width: 2px;
         }
@@ -17,7 +16,11 @@
           stroke: #777;
           stroke-width: 3px;
         }
-    </style>
+        .node text {
+            pointer-events: none;
+            font: 10px sans-serif;
+        }
+     </style>
 </head>
 <body>
     {%block visual%}{%endblock visual%}
