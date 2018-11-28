@@ -13,62 +13,87 @@
     </form>
   </nav>
 </div>
-<div class = "container">
-    <script src="https://d3js.org/d3.v5.js"></script>
-    <script>
-      var width  = 640;
-          height = 480;
 
-      var links =
+<!-- Links (* Removed after extracted by js *)-->
+   <table id='links'>
+       {% for link in links %}
+       <tr>
+           <td class='source'>{{ link.source }}</td>
+           <td class='target'>{{ link.target }}</td>
+       </tr>
+       {% endfor %}
+   </table>
 
-      //graph nodes
-      var nodes = {}
+<div id = "chart" align = "center"></div>
+<script src="https://d3js.org/d3.v3.js"></script>
+<script>
 
-      //parse links to nodes
-      links.forEach(function(link){
-        links.source = nodes[link.source] ||
-          (nodes[link.source] = {name:  link.source});
-        link.target = nodes[link.target] ||
-          (nodes[link.target] = {name: link.target})
-      });
+  var sourceList = Array.from(document.getElementsByClassName('source'))
+           .map(x => x.innerHTML)
+  var targetList = Array.from(document.getElementsByClassName('target'))
+                    .map(x => x.innerHTML)
 
-      //add svg to body
-      var svg = d3.select('body').append('svg')
-      .attr('width', width)
-      .attr('height', height);
+  console.log(sourceList);
+  console.log(targetList);
+  document.getElementById('links').remove();
 
+  var i;
+  var links = [];
+  for(i = 0; i < sourceList.length; i++)
+  {
+    links.push({
+      source: sourceList[i],
+      target: targetList[i]
+    });
+  }
 
-      var force = d3.layout.force()
-      .size([width, height])
-      .nodes(d3.values(nodes))
-      .links(d3.values(links))
-      .on("tick", tick)
-      .linkDistance(300)
-      .start();
+  var width  = 1200;
+      height = 650;
 
-      var link = svg.selectAll('.link')
-      .data(links)
-      .enter().append('link')
-      .attr('class', 'link');
+  //graph nodes
+  var nodes = {}
+  //parse links to nodes
+  links.forEach(function(link){
+    link.source = nodes[link.source] ||
+      (nodes[link.source] = {name:  link.source});
+    link.target = nodes[link.target] ||
+      (nodes[link.target] = {name: link.target})
+  });
 
-      var node = svg.selectAll('node')
-      .data(force.nodes())
-      .enter().append('circle')
-      .attr('class', 'node')
-      .attr('r', width * 0.03)
+  //add svg to body
+  var svg = d3.select('#chart').append('svg')
+  .attr('width', width)
+  .attr('height', height);
 
-      function tick(e) {
-        node.attribute('cx', function(d) {return d.x})
-        .attr('cy', function(d) {return d.y})
-        .call(force.drag);
-        
-        link.attr('x1', function(d) {return d.source.x})
-        .attr('y1', function(d) {return d.source.y})
-        .attr('x2', function(d) {return d.source.x})
-        .attr('y2', function(d) {return d.source.y})
-      }
+  var force = d3.layout.force()
+  .size([width, height])
+  .nodes(d3.values(nodes))
+  .links(links)
+  .on("tick", tick)
+  .linkDistance(300)
+  .start();
 
+  var link = svg.selectAll('.link')
+  .data(links)
+  .enter().append('link')
+  .attr('class', 'link');
 
-    </script>
-</div>
+  var node = svg.selectAll('.node')
+  .data(force.nodes())
+  .enter().append('circle')
+  .attr('class', 'node')
+  .attr('r', width * 0.03)
+
+  function tick(e) {
+    node.attr('cx', function(d) {return d.x;})
+    .attr('cy', function(d) {return d.y;})
+    .call(force.drag);
+
+    link.attr('x1', function(d) {return d.source.x})
+    .attr('y1', function(d) {return d.source.y})
+    .attr('x2', function(d) {return d.target.x})
+    .attr('y2', function(d) {return d.target.y})
+  }
+
+</script>
 {%endblock visual%}

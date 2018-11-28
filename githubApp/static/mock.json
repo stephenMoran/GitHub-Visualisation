@@ -1,0 +1,10 @@
+{
+  "links": [
+  {"source": "Stephen", "target": "Daniel"},
+  {"source": "Daniel", "target": "Bob"},
+  {"source": "Bob", "target": "Stephen"},
+  {"source": "jj", "target": "Stephen"},
+  {"source": "Bob", "target": "Daniel"},
+  {"source": "Stephen", "target": "Greg"}
+  ]
+}

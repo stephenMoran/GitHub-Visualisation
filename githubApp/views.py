@@ -19,8 +19,11 @@ def login(request):
                 g = Github(currentUser, currentPass)
                 dataGather.getFollowers(name, g)
                 currentUser = dataGather.loginUser(g)
+                #get all links
+                links = link.objects.all()
                 context = {
-                    'user' : currentUser
+                    'user' : currentUser,
+                    'links': links
                 }
                 return render(request, 'visual.html', context)
             except:
@@ -42,8 +45,11 @@ def login(request):
                     request.session.modified = True
                     g = Github(form.data['userName'], form.data['password'])
                     currentUser = dataGather.loginUser(g)
+                    #get all links
+                    links = link.objects.all()
                     context = {
-                        'user' : currentUser
+                        'user' : currentUser,
+                        'links': links
                     }
                     return render(request, 'visual.html', context)
                 except:
