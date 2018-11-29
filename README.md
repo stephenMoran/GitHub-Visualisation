@@ -18,13 +18,14 @@ This is a webapp that shows a graph of users that are connected. These connectio
   3. Install required libraries(see requirements)
   4. set-up database
       ```
-      **python manage.py makemigrations**
+      python manage.py makemigrations
     
-      **python mange.py migrate**
+      python mange.py migrate
       ```
   5. run server 
       ```
-      **python manage.py runserver**
+      python manage.py runserver
+      
       ```
   ### Requirements
    ```
@@ -33,7 +34,7 @@ This is a webapp that shows a graph of users that are connected. These connectio
    pip install PyGithub
   
    pip install --upgrade django-crispy-forms
-    ```
-
+   ```
+    
 ## Screenshot of system
 ![](https://github.com/stephenMoran/GitHub-Visualisation/blob/master/systemScreenshot.PNG)
