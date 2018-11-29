@@ -14,3 +14,4 @@ This webapp is built using the Django web framework along with D3.js for the grp
   ...
 
 ##Screenshot of system
+![](/systemScreenshot.png)
