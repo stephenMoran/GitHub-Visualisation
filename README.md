@@ -17,24 +17,21 @@ This is a webapp that shows a graph of users that are connected. These connectio
   2. Navigate into project folder
   3. Install required libraries(see requirements)
   4. set-up database
-      '''
+      ```
       **python manage.py makemigrations**
-      '''
-      '''
+    
       **python mange.py migrate**
-      '''
+      ```
   5. run server 
-      '''
+      ```
       **python manage.py runserver**
-      '''
+      ```
   ### Requirements
-   '''
-   pip install Django 
-   '''
-   '''
-   pip install PyGithub
-   '''
    ```
+   pip install Django 
+  
+   pip install PyGithub
+  
    pip install --upgrade django-crispy-forms
     ```
 
