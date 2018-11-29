@@ -8,4 +8,3 @@ class gitUser(models.Model):
 class link(models.Model):
     source = models.CharField(max_length = 100)
     target  = models.CharField(max_length = 100)
-    weight = models.IntegerField()

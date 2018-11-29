@@ -18,7 +18,7 @@ def getFollowers(username, login):
         linkedTo = gitUser.objects.filter(name = followerLogin)
 
         for user in linkedTo:
-            link.objects.create(source= username, target = user.name, weight = followers)
+            link.objects.create(source= username, target = user.name)
 
     #If youre following anyone in the database
     for followed in following:
@@ -27,4 +27,4 @@ def getFollowers(username, login):
         linkedTo = gitUser.objects.filter(name = followedLogin)
         print(linkedTo)
         for member in linkedTo:
-            link.objects.create(source= username, target = member.name, weight = followers)
+            link.objects.create(source= username, target = member.name)

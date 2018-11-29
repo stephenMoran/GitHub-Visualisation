@@ -15,25 +15,24 @@
     </nav>
   </div>
 
+
   <div class="container">
-          <div id="login-row" class="row justify-content-center align-items-center">
-              <div id="login-column" class="col-md-6">
-                  <div class="box">
-                      <div class="float">
-                          <form class="form" method = "post">
-                              <legend class= "legendLogin">Enter your GitHub credentials</legend>
-                              {% csrf_token %}
-                              {{ form | crispy}}
-                              <button class="btn btn-default" type="submit" >Submit</button>
-                              {% if errorMes %}
-                              <div class = "errorMes"> * {{errorMes}} </div>
-                              {% endif %}
-                          </form>
-                      </div>
-                  </div>
-              </div>
-      </div>
-  </div>
+     <div class="card card-container">
+         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+         <img id="profile-img" class="profile-img-card" src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png" />
+         <p id="profile-name" class="profile-name-card"></p>
+         <form class="form" method = "post">
+             <legend class= "legendLogin"><strong>Enter your GitHub credentials</strong></legend>
+             {% csrf_token %}
+             {{ form | crispy}}
+             <button class="btn btn-default" type="submit" >Submit</button>
+             {% if errorMes %}
+             <div class = "errorMes"> * {{errorMes}} </div>
+             {% endif %}
+         </form>
+     </div><!-- /card-container -->
+ </div><!-- /container -->
+
   <style>
     .box {
         width: 500px;
@@ -45,82 +44,51 @@
       color: red
     }
 
-    .shape1{
-        position: relative;
-        height: 150px;
-        width: 150px;
-        background-color: #cccccc;
-        border-radius: 80px;
-        float: left;
-        margin-right: -50px;
+    /*login page styling*/
+    .card-container.card {
+        max-width: 350px;
+        padding: 40px 40px;
     }
-    .shape2 {
-        position: relative;
-        height: 150px;
-        width: 150px;
-        background-color: #cccccc;
-        border-radius: 80px;
-        margin-top: -30px;
-        float: left;
+    .card {
+        background-color: #F7F7F7;
+        /* just in case there no content*/
+        padding: 20px 25px 30px;
+        margin: 0 auto 25px;
+        margin-top: 50px;
+        /* shadows and rounded borders */
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     }
-    .shape3 {
-        position: relative;
-        height: 150px;
-        width: 150px;
-        background-color: #cccccc;
-        border-radius: 80px;
-        margin-top: -30px;
-        float: left;
-        margin-left: -31px;
+
+    .profile-img-card {
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 10px;
+        display: block;
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
     }
-    .shape4 {
-        position: relative;
-        height: 150px;
-        width: 150px;
-        background-color: #cccccc;
-        border-radius: 80px;
-        margin-top: -25px;
-        float: left;
-        margin-left: -32px;
-    }
-    .shape5 {
-        position: relative;
-        height: 150px;
-        width: 150px;
-        background-color: #cccccc;
-        border-radius: 80px;
-        float: left;
-        margin-right: -48px;
-        margin-left: -32px;
-        margin-top: -30px;
-    }
-    .shape6 {
-        position: relative;
-        height: 150px;
-        width: 150px;
-        background-color: #cccccc;
-        border-radius: 80px;
-        float: left;
-        margin-right: -20px;
-        margin-top: -35px;
-    }
-    .shape7 {
-        position: relative;
-        height: 150px;
-        width: 150px;
-        background-color: #cccccc;
-        border-radius: 80px;
-        float: left;
-        margin-right: -20px;
-        margin-top: -57px;
-    }
+
+    .profile-name-card {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin: 10px 0 0;
+        min-height: 1em;
+      }
+
     .float {
         position: absolute;
         z-index: 2;
     }
 
     .form {
-        margin-left: 145px;
+      align-self: center;
     }
 
     .legendLogin{
