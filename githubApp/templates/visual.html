@@ -48,7 +48,6 @@
            .map(x => x.innerHTML)
   var targetList = Array.from(document.getElementsByClassName('target'))
                     .map(x => x.innerHTML)
-
   document.getElementById('links').remove();
 
   //creating link array
@@ -72,9 +71,9 @@
     link.source = nodes[link.source] ||
       (nodes[link.source] = {name:  link.source});
     link.target = nodes[link.target] ||
-      (nodes[link.target] = {name: link.target})
+      (nodes[link.target] = {name: link.target});
   });
-
+  console.log(nodes);
 
   //add svg to body
   var svg = d3.select('#chart').append('svg')
@@ -104,7 +103,7 @@
   var node = elems.append('circle')
   .attr('class', 'node')
   .attr("fill",function(d,i){return color(i);})
-  .attr('r', width * 0.008);
+  .attr('r', function(d){return width * (0.001 * d.weight)});
 
   var text = elems.append("text")
      .attr('class', 'text')

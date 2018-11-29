@@ -47,6 +47,7 @@ def login(request):
                     currentUser = dataGather.loginUser(g)
                     #get all links
                     links = link.objects.all()
+                    print("hello1")
                     context = {
                         'user' : currentUser,
                         'links': links
