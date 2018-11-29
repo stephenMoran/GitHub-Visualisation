@@ -1,7 +1,13 @@
 # GitHub-Visualisation
-This webapp is built using the Django web framework along with D3.js for the grpah visualisation and the CSS framework Bootstrap for styling.
+This is a webapp that shows a graph of users that connected. These connections are based on users following eachother. The weight of each node in the graph is dependant on how well the node is connected to other elements of the graph. This webapp is built using the Django web framework along with D3.js for the grpah visualisation and the CSS framework Bootstrap for styling. Graph information is stored in a SQLite database.
 
 ## Usage
+* Log in using your GitHub credentials
+* Graph is displayed of current connected users
+* Use the input box to add a new user to the graph 
+* If the user is following any of the current members in the graph or is followed by any then it is added to the database. 
+* A link is then created between the two users and stored in the databse
+* The graph is rerendered using links from the database
 
 ## Requirements
   
