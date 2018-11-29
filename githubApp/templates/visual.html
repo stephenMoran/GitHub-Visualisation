@@ -25,13 +25,17 @@
    </table>
 
 <div id = "chart" align = "center"></div>
+<!-- Visualisation-->
 <script src="https://d3js.org/d3.v3.js"></script>
 <script>
 
   //defining color scale
   var color = d3.scale.category20();
+
+  //getting sources
   var sourceList = Array.from(document.getElementsByClassName('source'))
            .map(x => x.innerHTML)
+  //getting targets
   var targetList = Array.from(document.getElementsByClassName('target'))
                     .map(x => x.innerHTML)
   document.getElementById('links').remove();
@@ -47,7 +51,7 @@
     });
   }
 
-  var width  = 1700;
+  var width  = 1900;
       height = 850;
 
   //graph nodes
@@ -59,7 +63,6 @@
     link.target = nodes[link.target] ||
       (nodes[link.target] = {name: link.target});
   });
-  console.log(nodes);
 
   //add svg to body
   var svg = d3.select('#chart').append('svg')
@@ -71,15 +74,16 @@
   .nodes(d3.values(nodes))
   .links(links)
   .on("tick", tick)
-  .linkDistance(300)
+  .linkDistance(450)
   .start();
 
+  //creating links
   var link = svg.selectAll('.link')
   .data(links)
   .enter().append('line')
   .attr('class', 'link');
 
-
+  //creating nodes
   var elems = svg.selectAll('g')
   .data(force.nodes())
   .enter()
@@ -91,6 +95,7 @@
   .attr("fill",function(d,i){return color(i);})
   .attr('r', function(d){return width * (0.001 * d.weight)});
 
+  //appending text
   var text = elems.append("text")
      .attr('class', 'text')
      .attr("dx", 12)

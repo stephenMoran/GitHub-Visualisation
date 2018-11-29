@@ -7,6 +7,7 @@ from github import Github
 # Create your views here.
 
 
+#handles page routing
 def login(request):
     form = loginForm(request.POST)
     if request.method == 'POST':
@@ -47,7 +48,6 @@ def login(request):
                     currentUser = dataGather.loginUser(g)
                     #get all links
                     links = link.objects.all()
-                    print("hello1")
                     context = {
                         'user' : currentUser,
                         'links': links
