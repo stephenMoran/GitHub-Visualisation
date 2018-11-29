@@ -13,5 +13,5 @@ This webapp is built using the Django web framework along with D3.js for the grp
    pip install PyGithub
   ...
 
-##Screenshot of system
-![](./systemScreenshot.png)
+## Screenshot of system
+![](https://github.com/stephenMoran/GitHub-Visualisation/blob/master/systemScreenshot.PNG)
