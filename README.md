@@ -9,15 +9,34 @@ This is a webapp that shows a graph of users that are connected. These connectio
 * A link is then created between the two users and stored in the databse
 * The graph is rerendered using links from the database
 
-## Requirements
+## Installation instructions and requirements
   
-  ...
+  
+  ### Installation
+  1. Clone git repository
+  2. Navigate into project folder
+  3. Install required libraries(see requirements)
+  4. set-up database
+      '''
+      **python manage.py makemigrations**
+      '''
+      '''
+      **python mange.py migrate**
+      '''
+  5. run server 
+      '''
+      **python manage.py runserver**
+      '''
+  ### Requirements
+   '''
    pip install Django 
-  ...
-  
-  ...
+   '''
+   '''
    pip install PyGithub
-  ...
+   '''
+   '''
+   pip install --upgrade django-crispy-forms
+   '''
 
 ## Screenshot of system
 ![](https://github.com/stephenMoran/GitHub-Visualisation/blob/master/systemScreenshot.PNG)
