@@ -12,6 +12,7 @@ def getFollowers(username, login):
     followers = user.get_followers()
     following = user.get_following()
     #Find links between nodes - followers
+    gitUser.objects.create(name = user.login, weight = user.followers)
     for follower in followers:
         followerLogin = follower.login
         linkedTo = gitUser.objects.filter(name = followerLogin)
@@ -27,11 +28,8 @@ def getFollowers(username, login):
         print(linkedTo)
         for user in linkedTo:
             link.objects.create(source= username, target = user.name)
-    #only add if part of graph
 
     gitUser.objects.create(name = user.login, weight = user.followers)
-
-
 #    for member in gitUser.objects.all():
 #        memberAccount = login.get_user(member.name)
 #        memberFollows = memberAccount.get_followers()
