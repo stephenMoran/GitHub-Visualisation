@@ -34,9 +34,9 @@ This is a webapp that shows a graph of users that are connected. These connectio
    '''
    pip install PyGithub
    '''
-   '''
+   ```
    pip install --upgrade django-crispy-forms
-   '''
+    ```
 
 ## Screenshot of system
 ![](https://github.com/stephenMoran/GitHub-Visualisation/blob/master/systemScreenshot.PNG)
