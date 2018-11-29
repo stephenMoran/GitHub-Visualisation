@@ -27,7 +27,6 @@
 <div id = "chart" align = "center"></div>
 <style>
     .node{
-      fill: #ccc;
       stroke: #fff;
       stroke-width: 2px;
     }
@@ -43,15 +42,16 @@
 <script src="https://d3js.org/d3.v3.js"></script>
 <script>
 
+  //defining color scale
+  var color = d3.scale.category20();
   var sourceList = Array.from(document.getElementsByClassName('source'))
            .map(x => x.innerHTML)
   var targetList = Array.from(document.getElementsByClassName('target'))
                     .map(x => x.innerHTML)
 
-  console.log(sourceList);
-  console.log(targetList);
   document.getElementById('links').remove();
 
+  //creating link array
   var i;
   var links = [];
   for(i = 0; i < sourceList.length; i++)
@@ -74,7 +74,8 @@
     link.target = nodes[link.target] ||
       (nodes[link.target] = {name: link.target})
   });
-  console.log(nodes)
+
+
   //add svg to body
   var svg = d3.select('#chart').append('svg')
   .attr('width', width)
@@ -102,6 +103,7 @@
 
   var node = elems.append('circle')
   .attr('class', 'node')
+  .attr("fill",function(d,i){return color(i);})
   .attr('r', width * 0.008);
 
   var text = elems.append("text")
