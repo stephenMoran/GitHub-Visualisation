@@ -1,5 +1,5 @@
 # GitHub-Visualisation
-This is a webapp that shows a graph of users that connected. These connections are based on users following eachother. The weight of each node in the graph is dependant on how well the node is connected to other elements of the graph. This webapp is built using the Django web framework along with D3.js for the grpah visualisation and the CSS framework Bootstrap for styling. Graph information is stored in a SQLite database.
+This is a webapp that shows a graph of users that are connected. These connections are based on users following eachother. The weight of each node in the graph is dependant on how well the node is connected to other elements of the graph. This webapp is built using the Django web framework along with D3.js for the graph visualisation and the CSS framework Bootstrap for styling. Graph information is stored in a SQLite database.
 
 ## Usage
 * Log in using your GitHub credentials
